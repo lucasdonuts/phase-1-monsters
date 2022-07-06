@@ -1,0 +1,32 @@
+body {
+  text-align: center;
+}
+
+.monster-container {
+  text-align: center;
+}
+
+.monster-card:first-child {
+  margin-top: 0px;
+}
+
+.monster-card {
+  text-align: center;
+  display: inline-grid;
+  border: gray solid 1px;
+  box-shadow: 3px 4px lightgray;
+  margin: 10px;
+  width: 50%;
+}
+
+.name {
+  margin: 10px;
+}
+
+.age {
+  margin-top: 0px;
+}
+
+.description {
+  margin-top: 0px;
+}
