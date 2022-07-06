@@ -9,7 +9,18 @@
   </head>
   <body>
     <h1>Monstr Inc.</h1>
-    <div id='create-monster'></div>
+    <div id='create-monster'>
+      <h4>Create a New Monster</h2>
+      <form id='new-monster-form'>
+        <!-- <label for='name'>Name: </label> -->
+        <input name='name' id='name' type='text' placeholder='Name'>
+        <!-- <label for='age'>Description: </label> -->
+        <input name='age' id='age' type='text' placeholder='Age'>
+        <!-- <label for='Description'>Age: </label> -->
+        <input name='description' id='description' type='text' placeholder='Description'>
+        <input type='submit' value='Create Monster'>
+      </form>
+    </div>
     <div id='monster-container'></div>
     <button id="back"><=</button>
     <button id="forward">=></button>

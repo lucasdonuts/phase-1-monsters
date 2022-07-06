@@ -2,12 +2,23 @@ body {
   text-align: center;
 }
 
-.monster-container {
-  text-align: center;
+h1 {
+  margin-top: 5px;
 }
 
-.monster-card:first-child {
-  margin-top: 0px;
+h4 {
+  margin: 5px;
+}
+
+#create-monster {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  border: solid black 1px;
+}
+
+.monster-container {
+  text-align: center;
 }
 
 .monster-card {

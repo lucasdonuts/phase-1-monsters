@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
   const monsterContainer = document.querySelector('#monster-container')
-  fetchMonsters()
+  const form = document.querySelector('#new-monster-form')
+  
+  getMonsters()
+  .then(monsters => renderMonsters(monsters))
+
   // Function definitions
-  function fetchMonsters() {
-    fetch('http://localhost:3000/monsters')
+  function getMonsters() {
+    return fetch('http://localhost:3000/monsters')
     .then(res => res.json())
-    .then(monsters => renderMonsters(monsters.splice(0, 50)))
   }
 
   function renderMonsters(monsterArray) {
-    monsterArray.forEach(monster => createMonsterCard(monster))
+    monsterArray.splice(0, 50).forEach(monster => createMonsterCard(monster))
   }
 
   function createMonsterCard(monster) {
@@ -27,7 +30,36 @@ document.addEventListener('DOMContentLoaded', () => {
     description.className = 'description'
 
     card.append(name, age, description)
-    monsterContainer.append(card)
+    monsterContainer.prepend(card)
   }
+
+  function postMonster(monsterObj) {
+    return fetch('http://localhost:3000/monsters', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(monsterObj)
+    })
+    .then(res => res.json())
+    .then(monster => addNewMonster(monster))
+  }
+
+  function addNewMonster(monsterObj) {
+    createMonsterCard(monsterObj)
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const monster = {
+      name: e.target.name.value,
+      age: e.target.age.value,
+      description: e.target.description.value
+    }
+
+    postMonster(monster)
+
+  })
 
 })
