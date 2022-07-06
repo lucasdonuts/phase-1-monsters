@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background-color: bisque;
 }
 
 h1 {
@@ -10,11 +11,16 @@ h4 {
   margin: 5px;
 }
 
+input {
+  margin: 0px 0px;
+}
+
 #create-monster {
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   border-radius: 25px;
   border: solid black 1px;
+  background-color: white;
 }
 
 .monster-container {
@@ -25,19 +31,25 @@ h4 {
   text-align: center;
   display: inline-grid;
   border: gray solid 1px;
+  border-radius: 25px;
   box-shadow: 3px 4px lightgray;
+  background-color: lightblue;
+  color: black;
   margin: 10px;
-  width: 50%;
+  height: fit-content;
+  width: 400px;
+  align-content: flex-start;
 }
 
 .name {
-  margin: 10px;
+  margin: 5px 0px 0px 0px;
 }
 
 .age {
-  margin-top: 0px;
+  margin: 0px 0px 20px 0px;
 }
 
 .description {
-  margin-top: 0px;
+  margin: 0px 0px 10px 0px;
+  /* display: none; */
 }

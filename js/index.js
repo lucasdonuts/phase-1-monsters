@@ -1,9 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
   const monsterContainer = document.querySelector('#monster-container')
   const form = document.querySelector('#new-monster-form')
+  const backButton = document.querySelector('#back')
+  const nextButton = document.querySelector('#forward')
+  let numOfMonsterCards = 0;
+  let currentPage = 1
   
   getMonsters()
-  .then(monsters => renderMonsters(monsters))
+  .then(monsters => renderMonsters(monsters, currentPage))
+
+  // Next is page iteration. Shows 50 per page.
+  // Alter renderMonsters to take a page parameter as well.
+  // Add page value in between buttons and possibly to buttons themselves.
+  // Read this page value to pass into button event listener.
+
+  nextButton.addEventListener('click', (e) => {
+    monsterContainer.innerHTML = ''
+    currentPage += 1
+
+    getMonsters()
+    .then(monsters => renderMonsters(monsters, currentPage))
+  })
+
+  backButton.addEventListener('click', (e) => {
+    if(currentPage > 1) {
+      monsterContainer.innerHTML = ''
+      currentPage -= 1
+
+      getMonsters()
+      .then(monsters => renderMonsters(monsters, currentPage))
+    }
+  })
 
   // Function definitions
   function getMonsters() {
@@ -11,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
   }
 
-  function renderMonsters(monsterArray) {
-    monsterArray.splice(0, 50).forEach(monster => createMonsterCard(monster))
+  function renderMonsters(monsterArray, page) {
+    const start = page == 1 ? 0 : ((page - 1) * 50)
+    monsterArray.splice(start, 50).forEach(monster => createMonsterCard(monster))
   }
 
   function createMonsterCard(monster) {
@@ -20,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = document.createElement('h2')
     const age = document.createElement('p')
     const description = document.createElement('p')
+
+    numOfMonsterCards += 1
 
     card.className = 'monster-card'
     name.textContent = monster.name
